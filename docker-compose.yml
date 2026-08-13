@@ -26,7 +26,6 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      HOME: /home/node
       HOST: 0.0.0.0
       PORT: "3100"
       SERVE_UI: "true"
