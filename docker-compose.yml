@@ -20,6 +20,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    user: root
+    command: >
+      sh -c "mkdir -p /paperclip/.gemini/antigravity-cli &&
+             chown -R node:node /paperclip &&
+             su-exec node node /app/dist/index.js" # ou o comando padrão do paperclip
     restart: unless-stopped
     depends_on:
       postgres:
