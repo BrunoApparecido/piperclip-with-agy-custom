@@ -22,6 +22,12 @@ RUN npm install -g @weslleycapelari/adapter-antigravity-local || \
 RUN mkdir -p /paperclip/.gemini/antigravity-cli \
     && chown -R node:node /paperclip
 
+    # 1. Criar o link simbolico global para o agy
+RUN ln -s /paperclip/.local/bin/agy /usr/local/bin/agy || true
+
+# 2. Garantir que a pasta /paperclip/.local/bin esteja no PATH do container
+ENV PATH="${PATH}:/paperclip/.local/bin"
+
 # Retorna ao usuário 'node'
 # USER node
 
