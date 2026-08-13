@@ -23,6 +23,6 @@ RUN mkdir -p /paperclip/.gemini/antigravity-cli \
     && chown -R node:node /paperclip
 
 # Retorna ao usuário 'node'
-USER node
+# USER node
 
 EXPOSE 3100
