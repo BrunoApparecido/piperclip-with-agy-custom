@@ -2,6 +2,19 @@ FROM ghcr.io/paperclipai/paperclip:latest
 
 USER root
 
+# Criar pasta global de credenciais e dar permissão total
+RUN mkdir -p /paperclip/.gemini && \
+    chmod -R 777 /paperclip/.gemini
+
+# Forçar todos os caminhos possíveis de HOME/config a apontarem para o mesmo lugar
+RUN mkdir -p /root /home/node && \
+    ln -s /paperclip/.gemini /root/.gemini 2>/dev/null || true && \
+    ln -s /paperclip/.gemini /home/node/.gemini 2>/dev/null || true
+
+# Configurar as variáveis globais de ambiente
+ENV HOME=/paperclip
+ENV ANTIGRAVITY_CONFIG_DIR=/paperclip/.gemini
+
 # 1. Dependências base do sistema
 RUN apt-get update && apt-get install -y \
     git \
