@@ -30,7 +30,8 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      HOST: "0.0.0.0"
+      HOME: /home/node
+      HOST: 0.0.0.0
       PORT: "3100"
       SERVE_UI: "true"
       DATABASE_URL: ${DATABASE_URL}
